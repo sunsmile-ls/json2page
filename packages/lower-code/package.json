@@ -17,6 +17,8 @@
     "commit:signed": "cz -S"
   },
   "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@unocss/reset": "^0.51.5",
     "ahooks": "^3.7.7",

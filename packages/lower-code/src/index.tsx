@@ -5,14 +5,13 @@ import EventEmitter from 'eventemitter3'
 import { ConfigProvider } from 'antd'
 import store from './store'
 import { Provider } from 'react-redux'
-import zhCN from 'antd/es/locale/zh_CN'
-import 'moment/locale/zh-cn'
 import AppStore, { createStore } from '@src/store/AppStore'
 import Modal from './components/Modal'
 import { BaseApiObject } from './types/types'
 import axios from 'axios'
 import moment from 'moment'
-
+import zhCN from 'antd/es/locale/zh_CN'
+moment.locale('zh-cn')
 const eventEmitter = new EventEmitter()
 function App() {
   const schema = {
