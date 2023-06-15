@@ -1,6 +1,7 @@
 export default [
   {
     label: '页面',
+    icon: 'upload',
     children: [
       {
         label: '简单页面',
