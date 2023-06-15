@@ -14,6 +14,7 @@ import classnames from 'classnames'
 import { useCSSToHead, useVarsToHead } from '@src/hooks'
 import EnvContext from '@src/context/envContext'
 import AppContext from '@src/context/AppContext'
+import { Tooltip } from 'antd'
 
 /**
  * Page 渲染器
@@ -124,20 +125,22 @@ function Page(props: PageProps): JSX.Element {
     initApi,
     interval,
     $path: _,
-    setStoreValue,
   } = props
   const setCSS = useCSSToHead()
   const setVarsCSS = useVarsToHead()
   const env = useContext(EnvContext)
   const { getFieldValue } = useContext(AppContext)
   const timeRef = useRef<string | number | NodeJS.Timeout | undefined>()
-
   // 处理 标题部分
   const renderHeader = useMemo(() => {
     if (!title && !subTitle) return null
     return (
-      <div className={classnames('pl-1', headerClassName)}>
-        {title && <h2 className="font-600 text-size-2xl p-0 m-0 mt-1">{title}</h2>}
+      <div className={classnames('px-[16px] py-[10px]', headerClassName)}>
+        {title && (
+          <h2 className="font-600 text-size-[20px] p-0 m-0 mt-1">
+            {title}
+          </h2>
+        )}
         {subTitle && <h6 className="text-size-sm pt-2 m-0">{subTitle}</h6>}
       </div>
     )
@@ -174,7 +177,7 @@ function Page(props: PageProps): JSX.Element {
   return (
     <div className={classnames('flex flex-col', className)} style={style}>
       {renderHeader}
-      <div className={bodyClassName as string}>{children}</div>
+      <div className={classnames('px-[16px]', bodyClassName)}>{children}</div>
     </div>
   )
 }

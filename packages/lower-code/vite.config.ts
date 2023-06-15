@@ -43,12 +43,34 @@ export default defineConfig({
       },
     },
   },
-  server: {
-    port: 3000,
-    proxy: {
-      '^/api': 'http://localhost:3000',
+  build: {
+    lib: {
+      // Could also be a dictionary or array of multiple entry points
+      entry: resolve(__dirname, 'src/main.tsx'),
+      name: '@sunsmile/lower-code',
+      // the proper extensions will be added
+      fileName: 'json-page',
+      formats: ['es', 'umd'],
+    },
+    rollupOptions: {
+      // make sure to externalize deps that shouldn't be bundled
+      // into your library
+      external: ['react'],
+      output: {
+        // Provide global variables to use in the UMD build
+        // for externalized deps
+        globals: {
+          react: 'React',
+        },
+      },
     },
   },
+  // server: {
+  //   port: 3000,
+  //   proxy: {
+  //     '^/api': 'http://localhost:3000',
+  //   },
+  // },
   // vitest config
   test: {
     // https://vitest.dev/config/

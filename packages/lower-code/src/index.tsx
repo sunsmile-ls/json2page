@@ -13,96 +13,10 @@ import moment from 'moment'
 import zhCN from 'antd/es/locale/zh_CN'
 moment.locale('zh-cn')
 const eventEmitter = new EventEmitter()
-function App() {
-  const schema = {
-    type: 'page',
-    initApi: 'api/user/info',
-    body: [
-      {
-        type: 'divider',
-        orientation: 'left',
-        body: '检查表',
-      },
-      {
-        type: 'crud',
-        api: 'post:/api/user/list',
-        filter: {
-          size: 'middle',
-          initialValues: {},
-          actions: [
-            {
-              type: 'button',
-              actionType: 'submit',
-              body: '查询',
-              style: {
-                marginRight: '10px',
-              },
-            },
-            {
-              type: 'button',
-              actionType: 'download',
-              body: '下载',
-            },
-          ],
-        },
-        table: {
-          columns: [
-            {
-              title: '索引',
-              dataIndex: 'index',
-            },
-            {
-              title: '服务名称',
-              dataIndex: 'name',
-            },
-            {
-              title: '服务调用次数',
-              dataIndex: 'status',
-            },
-            {
-              title: '日期',
-              dataIndex: 'reportDate',
-              valueType: 'datepicker',
-              renderText: '${reportDate | format}',
-              options: {
-                filters: {
-                  format(val: string) {
-                    if (val) {
-                      return moment(+val).format('yyyy-MM-DD')
-                    }
-                    return val
-                  },
-                },
-              },
-            },
-            {
-              title: '操作',
-              dataIndex: 'operation',
-              body: [
-                {
-                  type: 'button',
-                  level: 'link',
-                  actionType: 'dialog',
-                  body: '修改',
-                  api: 'put:/api/user/info',
-                  title: '修改',
-                },
-                {
-                  type: 'button',
-                  body: '删除',
-                  level: 'link',
-                  className: 'text-danger',
-                  actionType: 'ajax',
-                  confirmText: '确认要删除？',
-                  api: 'delete:/api/user/delete/${id}',
-                },
-              ],
-            },
-          ],
-        },
-      },
-    ],
-  }
+interface renderProps {
+  schema: any
+}
+function App({ schema }: renderProps) {
   const env = {
     fetcher(api: BaseApiObject | string, data: any) {
       let method = 'get'

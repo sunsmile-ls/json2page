@@ -1,8 +1,12 @@
 {
-  "name": "lower-code",
-  "private": true,
+  "name": "@sunsmile/lower-code",
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./src/main.tsx",
+  "module": "./src/main.tsx",
   "scripts": {
     "build": "vite build",
     "preview": "vite preview",
