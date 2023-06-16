@@ -7,10 +7,14 @@ import EnvContext from '@src/context/envContext'
 import { BaseApiObject } from '@src/types/types'
 
 export type LabelAlign = 'right' | 'left'
+const FormItem = Form.Item
 
 const defaultLayout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
+}
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 },
 }
 export interface FormSchemaBase {
   api?: BaseApiObject | string
@@ -72,7 +76,12 @@ function CustomForm(props: FormProps, ref: any) {
 
   const actionsRender = useMemo(() => {
     if (isModal) return null
-    if (!actions) return <Button onClick={handleClick}>{searchText}</Button>
+    if (!actions)
+      return (
+        <FormItem {...tailLayout}>
+          <Button onClick={handleClick}>{searchText}</Button>
+        </FormItem>
+      )
     return null
   }, [actions, searchText, isModal])
   useEffect(() => {

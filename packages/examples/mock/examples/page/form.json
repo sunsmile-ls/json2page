@@ -4,14 +4,17 @@
   "body": [
     {
       "type": "form",
+      "style": {
+        "max-width": "400px"
+      },
       "mode": "horizontal",
       "api": "/api/mock/form/saveForm",
       "body": [
-        { 
+        {
           "label": "Name",
           "type": "input",
           "level": "text",
-          "name": "name" 
+          "name": "name"
         },
         {
           "label": "Email",
