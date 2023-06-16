@@ -1,4 +1,3 @@
-import { RendererProps } from '@src/types/schema'
 import { forwardRef, useImperativeHandle } from 'react'
 import { Form, Button } from 'antd'
 import { FormProps as antdFormProps } from 'antd'
@@ -9,6 +8,10 @@ import { BaseApiObject } from '@src/types/types'
 
 export type LabelAlign = 'right' | 'left'
 
+const defaultLayout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+}
 export interface FormSchemaBase {
   api?: BaseApiObject | string
   body: Array<{
@@ -24,17 +27,13 @@ export interface FormSchemaBase {
   }>
 }
 
-export interface FormProps
-  extends Omit<antdFormProps, 'layout'>,
-    Omit<RendererProps, 'className'>,
-    Omit<FormSchemaBase, 'mode' | 'className'> {
+export interface FormProps extends Omit<antdFormProps, 'layout'> {
   data?: any // 用于渲染编辑的数据
   [propName: string]: any
   $path: string
   layout?: 'grid' | 'inline' | 'horizontal' | 'vertical'
 }
 function CustomForm(props: FormProps, ref: any) {
-  let { children } = props
   const {
     api,
     searchText = common.search,
@@ -43,8 +42,10 @@ function CustomForm(props: FormProps, ref: any) {
     isModal = false,
     $path,
     setStoreValue,
+    body: _,
     onFinish,
     saveFormInst,
+    children,
     ...rest
   } = props
   const [form] = Form.useForm()
@@ -91,13 +92,13 @@ function CustomForm(props: FormProps, ref: any) {
   return (
     <Form
       form={form}
+      {...defaultLayout}
       size="middle"
       {...rest}
       layout={layout === 'grid' ? 'horizontal' : layout}
       onFinish={onFinishFunc}
     >
-      {/* @ts-ignore */}
-      {children}
+      {children as React.ReactNode}
       {actionsRender}
     </Form>
   )

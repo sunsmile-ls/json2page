@@ -14,7 +14,7 @@ import classnames from 'classnames'
 import { useCSSToHead, useVarsToHead } from '@src/hooks'
 import EnvContext from '@src/context/envContext'
 import AppContext from '@src/context/AppContext'
-import { Tooltip } from 'antd'
+import { evaluate } from '@src/formula'
 
 /**
  * Page 渲染器
@@ -124,8 +124,10 @@ function Page(props: PageProps): JSX.Element {
     data,
     initApi,
     interval,
-    $path: _,
+    $path,
+    setFieldValueByPath,
   } = props
+  console.log(children)
   const setCSS = useCSSToHead()
   const setVarsCSS = useVarsToHead()
   const env = useContext(EnvContext)
@@ -136,16 +138,15 @@ function Page(props: PageProps): JSX.Element {
     if (!title && !subTitle) return null
     return (
       <div className={classnames('px-[16px] py-[10px]', headerClassName)}>
-        {title && (
-          <h2 className="font-600 text-size-[20px] p-0 m-0 mt-1">
-            {title}
-          </h2>
-        )}
+        {title && <h2 className="font-600 text-size-[20px] p-0 m-0 mt-1">{title}</h2>}
         {subTitle && <h6 className="text-size-sm pt-2 m-0">{subTitle}</h6>}
       </div>
     )
   }, [title, subTitle])
-
+  let child = children
+  if (typeof child === 'string') {
+    child = evaluate(child, getFieldValue($path))
+  }
   // 设置css
   useEffect(() => {
     setCSS(css)
@@ -157,7 +158,9 @@ function Page(props: PageProps): JSX.Element {
   }, [cssVars])
 
   // 处理请求资源
-  const dealData = (res: any) => {}
+  const dealData = (res: any) => {
+    setFieldValueByPath(res)
+  }
   const getData = () => {
     if (initApi) env.fetcher(initApi, data).then((res) => dealData(res))
   }
@@ -177,7 +180,7 @@ function Page(props: PageProps): JSX.Element {
   return (
     <div className={classnames('flex flex-col', className)} style={style}>
       {renderHeader}
-      <div className={classnames('px-[16px]', bodyClassName)}>{children}</div>
+      <div className={classnames('px-[16px]', bodyClassName)}>{child}</div>
     </div>
   )
 }

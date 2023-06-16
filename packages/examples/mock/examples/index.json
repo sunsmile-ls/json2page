@@ -9,6 +9,6 @@
     "placement": "right",
     "trigger": "click"
   },
-  "body": "内容部分. 可以使用 \\\\${var} 获取变量。如: `\\\\$date`: ${date}",
+  "body": "内容部分. 可以使用 \\${var} 获取变量。如: `\\$date`: ${date}",
   "initApi": "/api/page/initData"
 }

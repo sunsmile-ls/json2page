@@ -1,7 +1,7 @@
 export default [
   {
     label: '页面',
-    icon: 'upload',
+    icon: 'yemian',
     children: [
       {
         label: '简单页面',
@@ -9,11 +9,11 @@ export default [
       },
       {
         label: '初始化出错',
-        path: '/examples/pages/error',
+        path: '/examples/page/error',
       },
       {
         label: '表单页面',
-        path: '/examples/pages/form',
+        path: '/examples/page/form',
       },
     ],
   },

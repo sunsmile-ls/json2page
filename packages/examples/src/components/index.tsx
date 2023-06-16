@@ -6,7 +6,7 @@ import { createFromIconfontCN } from '@ant-design/icons'
 import RenderComp from './renderComp'
 
 const IconFont = createFromIconfontCN({
-  scriptUrl: ['//at.alicdn.com/t/c/font_2017605_zebgmkxpyji.js'],
+  scriptUrl: ['//at.alicdn.com/t/c/font_4126026_2yajrb2ffrp.js'],
 })
 interface responseData {
   label: string

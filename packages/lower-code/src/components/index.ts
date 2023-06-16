@@ -5,7 +5,9 @@ import CustomTabs from './Tabs'
 import DatePicker from './DatePicker'
 import Crud from './CRUD'
 import Table from './Table'
-import { Input, Divider, Alert, Pagination, Row, Col, Form } from 'antd'
+import ParseHtml from './ParseHtml'
+import CustomAlert from './Alert'
+import { Input, Divider, Pagination, Row, Col, Form } from 'antd'
 import { RendererComponent, registerRenderer } from '@src/schema/renderFactory'
 import StoreHOC from '@src/store/AppStore/AppHoc'
 const { TextArea } = Input
@@ -24,9 +26,10 @@ Object.keys(Comps).map((key) => {
 
 const renderComps = {
   Input,
+  ParseHtml,
   Row,
   Col,
-  Alert,
+  Alert: CustomAlert,
   TextArea,
   Divider,
   Pagination,
