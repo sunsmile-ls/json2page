@@ -10,6 +10,7 @@ export function dealFormProps(props: RendererProps) {
         ...itemProps,
         ...item.itemProps,
         label: item.label,
+        name: item.name,
         body: item,
       }
     })
@@ -19,6 +20,7 @@ export function dealFormProps(props: RendererProps) {
       ...itemProps,
       ...body.itemProps,
       label: body.label,
+      name: body.name,
       body: body,
     }
   }

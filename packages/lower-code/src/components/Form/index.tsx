@@ -1,6 +1,6 @@
 import { forwardRef, useImperativeHandle } from 'react'
 import { Form, Button } from 'antd'
-import { FormProps as antdFormProps } from 'antd'
+import { FormProps as antdFormProps, FormItemProps } from 'antd'
 import { useContext, useEffect, useMemo } from 'react'
 import common from '@src/utils/constant'
 import EnvContext from '@src/context/envContext'
@@ -13,7 +13,7 @@ const defaultLayout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 }
-const tailLayout = {
+const defaultTailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 }
 export interface FormSchemaBase {
@@ -31,24 +31,25 @@ export interface FormSchemaBase {
   }>
 }
 
-export interface FormProps extends Omit<antdFormProps, 'layout'> {
+export interface FormProps extends antdFormProps {
   data?: any // 用于渲染编辑的数据
-  [propName: string]: any
   $path: string
-  layout?: 'grid' | 'inline' | 'horizontal' | 'vertical'
+  tailLayout: Pick<FormItemProps, 'wrapperCol'>
+  [propName: string]: any
 }
 function CustomForm(props: FormProps, ref: any) {
   const {
     api,
     searchText = common.search,
     actions,
-    layout = 'grid',
     isModal = false,
     $path,
     setStoreValue,
     body: _,
     onFinish,
     saveFormInst,
+    layoutStyle = defaultLayout,
+    tailLayout = defaultTailLayout,
     children,
     ...rest
   } = props
@@ -99,14 +100,7 @@ function CustomForm(props: FormProps, ref: any) {
     []
   )
   return (
-    <Form
-      form={form}
-      {...defaultLayout}
-      size="middle"
-      {...rest}
-      layout={layout === 'grid' ? 'horizontal' : layout}
-      onFinish={onFinishFunc}
-    >
+    <Form form={form} {...layoutStyle} size="middle" {...rest} onFinish={onFinishFunc}>
       {children as React.ReactNode}
       {actionsRender}
     </Form>
