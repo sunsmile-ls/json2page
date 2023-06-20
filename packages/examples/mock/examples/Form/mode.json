@@ -1,0 +1,99 @@
+{
+  "type": "page",
+  "title": "表单模式汇总",
+  "subTitle": "展示各种模式的 Form",
+  "bodyClassName": "page",
+  "css": {
+    ".page": {
+      "background": "#f0f2f5"
+    }
+  },
+  "body": [
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "type": "card",
+          "title": "常规模式",
+          "body": {
+            "type": "form",
+            "api": "/api/mock2/form/saveForm?waitSeconds=2",
+            "mode": "normal",
+            "actions": {
+              "type": "button",
+              "level": "submit",
+              "body": "登录"
+            },
+            "body": [
+              {
+                "type": "input",
+                "name": "email",
+                "level": "email",
+                "required": true,
+                "placeholder": "请输入邮箱",
+                "label": "邮箱",
+                "size": "full"
+              },
+              {
+                "type": "input",
+                "name": "password",
+                "level": "password",
+                "label": "密码",
+                "required": true,
+                "placeholder": "请输入密码",
+                "size": "full"
+              },
+              {
+                "type": "checkbox",
+                "name": "rememberMe",
+                "label": "记住登录"
+              }
+            ]
+          }
+        },
+        {
+          "type": "card",
+          "title": "常规模式 input md 尺寸",
+          "body": {
+            "type": "form",
+            "api": "/api/mock2/form/saveForm?waitSeconds=2",
+            "mode": "normal",
+            "actions": {
+              "type": "button",
+              "level": "submit",
+              "body": "登录"
+            },
+            "body": [
+              {
+                "type": "input",
+                "name": "email",
+                "level": "email",
+                "tooltip": "This is a required field",
+                "required": true,
+                "placeholder": "请输入邮箱",
+                "label": "邮箱",
+                "size": "md",
+                "remark": "xxxx",
+                "hint": "bla bla bla"
+              },
+              {
+                "type": "input",
+                "level": "password",
+                "name": "password",
+                "label": "密码",
+                "required": true,
+                "placeholder": "请输入密码",
+                "size": "md"
+              },
+              {
+                "type": "checkbox",
+                "name": "rememberMe",
+                "label": "记住登录"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

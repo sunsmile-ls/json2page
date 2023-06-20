@@ -12,12 +12,13 @@ export default defineMock([
   {
     url: '/api/page/initData',
     method: 'GET',
+    delay: 3000,
     body: {
       status: 200,
       data: {
         date: '2023-06-15',
       },
-      msg: ''
+      msg: '',
     },
   },
   {

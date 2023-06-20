@@ -7,7 +7,8 @@ import Crud from './CRUD'
 import Table from './Table'
 import ParseHtml from './ParseHtml'
 import CustomAlert from './Alert'
-import { Input, Divider, Pagination, Row, Col, Form } from 'antd'
+import Grid from './Grid'
+import { Input, Divider, Pagination, Row, Col, Card, Form, Checkbox } from 'antd'
 import { RendererComponent, registerRenderer } from '@src/schema/renderFactory'
 import StoreHOC from '@src/store/AppStore/AppHoc'
 const { TextArea } = Input
@@ -29,6 +30,7 @@ const renderComps = {
   ParseHtml,
   Row,
   Col,
+  Checkbox,
   Alert: CustomAlert,
   TextArea,
   Divider,
@@ -37,6 +39,8 @@ const renderComps = {
   DatePicker,
   Tabs: CustomTabs,
   Button: CustomButton,
+  Grid,
+  Card,
   ...Comps,
 }
 

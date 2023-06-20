@@ -5,6 +5,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import common from '@src/utils/constant'
 import EnvContext from '@src/context/envContext'
 import { BaseApiObject } from '@src/types/types'
+import render from '@src/schema'
 
 export type LabelAlign = 'right' | 'left'
 const FormItem = Form.Item
@@ -77,13 +78,15 @@ function CustomForm(props: FormProps, ref: any) {
 
   const actionsRender = useMemo(() => {
     if (isModal) return null
-    if (!actions)
+    if (!actions) {
       return (
         <FormItem {...tailLayout}>
           <Button onClick={handleClick}>{searchText}</Button>
         </FormItem>
       )
-    return null
+    }
+
+    return <FormItem {...tailLayout}>{render(actions)}</FormItem>
   }, [actions, searchText, isModal])
   useEffect(() => {
     // 获取接口数据

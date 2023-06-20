@@ -127,7 +127,7 @@ function Page(props: PageProps): JSX.Element {
     $path,
     setFieldValueByPath,
   } = props
-  console.log(children)
+
   const setCSS = useCSSToHead()
   const setVarsCSS = useVarsToHead()
   const env = useContext(EnvContext)
@@ -145,7 +145,7 @@ function Page(props: PageProps): JSX.Element {
   }, [title, subTitle])
   let child = children
   if (typeof child === 'string') {
-    child = evaluate(child, getFieldValue($path))
+    child = evaluate(children, getFieldValue($path))
   }
   // 设置css
   useEffect(() => {
@@ -180,7 +180,7 @@ function Page(props: PageProps): JSX.Element {
   return (
     <div className={classnames('flex flex-col', className)} style={style}>
       {renderHeader}
-      <div className={classnames('px-[16px]', bodyClassName)}>{child}</div>
+      <div className={classnames('px-[8px]', bodyClassName)}>{child}</div>
     </div>
   )
 }

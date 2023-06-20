@@ -19,6 +19,7 @@ export default [
   },
   {
     label: '表单',
+    icon: '17',
     children: [
       {
         label: '表单展示模式',
