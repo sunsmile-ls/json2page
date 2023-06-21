@@ -31,11 +31,10 @@ export interface FormSchemaBase {
     body: any
   }>
 }
-
+const empty = {}
 export interface FormProps extends antdFormProps {
   data?: any // 用于渲染编辑的数据
   $path: string
-  tailLayout: Pick<FormItemProps, 'wrapperCol'>
   [propName: string]: any
 }
 function CustomForm(props: FormProps, ref: any) {
@@ -45,15 +44,16 @@ function CustomForm(props: FormProps, ref: any) {
     actions,
     isModal = false,
     $path,
-    setStoreValue,
+    setFiledsValue,
     body: _,
     onFinish,
+    actionsProps = empty,
     saveFormInst,
-    layoutStyle = defaultLayout,
-    tailLayout = defaultTailLayout,
     children,
+    actionProps,
     ...rest
   } = props
+
   const [form] = Form.useForm()
   const envContent = useContext(EnvContext)
   const onFinishFunc = (values: any) => {
@@ -65,7 +65,7 @@ function CustomForm(props: FormProps, ref: any) {
       envContent.fetcher(api, values).then((res) => {
         // 成功的话刷新页面
         // reload(target)
-        setStoreValue({
+        setFiledsValue({
           formSource: res,
           ...values,
         })
@@ -75,19 +75,22 @@ function CustomForm(props: FormProps, ref: any) {
   const handleClick = () => {
     form.submit()
   }
-
   const actionsRender = useMemo(() => {
     if (isModal) return null
     if (!actions) {
       return (
-        <FormItem {...tailLayout}>
+        <FormItem {...(props.layout !== 'vertical' ? defaultTailLayout : empty)} {...actionsProps}>
           <Button onClick={handleClick}>{searchText}</Button>
         </FormItem>
       )
     }
 
-    return <FormItem {...tailLayout}>{render(actions)}</FormItem>
-  }, [actions, searchText, isModal])
+    return (
+      <FormItem {...(props.layout !== 'vertical' ? defaultTailLayout : empty)} {...actionsProps}>
+        {render(actions)}
+      </FormItem>
+    )
+  }, [actions, searchText, isModal, props.layout])
   useEffect(() => {
     // 获取接口数据
     if (api) {
@@ -103,7 +106,13 @@ function CustomForm(props: FormProps, ref: any) {
     []
   )
   return (
-    <Form form={form} {...layoutStyle} size="middle" {...rest} onFinish={onFinishFunc}>
+    <Form
+      form={form}
+      {...(props.layout !== 'vertical' ? defaultLayout : empty)}
+      size="middle"
+      {...rest}
+      onFinish={onFinishFunc}
+    >
       {children as React.ReactNode}
       {actionsRender}
     </Form>

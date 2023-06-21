@@ -3,7 +3,7 @@ import { RendererProps, Schema } from '@src/types/schema'
 import '../components' // 注册所有的组件
 import { uid } from 'uid'
 import isHtml from 'is-html'
-import { dealFormProps } from './extendField'
+import { dealFormProps, gridFormProps } from './extendField'
 
 export function isSchema(value: any): value is Schema {
   return typeof value === 'object' && 'type' in value
@@ -25,8 +25,10 @@ const getPath = (path: string, type: string, ignorePath: boolean) => {
 function extendField(props: RendererProps) {
   const { body, type } = props
   switch (type) {
-    case 'form':
-      return dealFormProps(props)
+    case 'form': {
+      const body = dealFormProps(props)
+      return gridFormProps({ ...props, body })
+    }
     default:
       return body
   }
