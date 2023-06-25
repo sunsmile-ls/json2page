@@ -7,6 +7,7 @@ import Crud from './CRUD'
 import Table from './Table'
 import ParseHtml from './ParseHtml'
 import CustomAlert from './Alert'
+import Flex from './Flex'
 import Grid from './Grid'
 import { Input, Divider, Pagination, Row, Col, Card, Form, Checkbox } from 'antd'
 import { RendererComponent, registerRenderer } from '@src/schema/renderFactory'
@@ -41,6 +42,7 @@ const renderComps = {
   Button: CustomButton,
   Grid,
   Card,
+  Flex,
   ...Comps,
 }
 

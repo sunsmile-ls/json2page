@@ -1,5 +1,6 @@
 import { PageSchema } from '@src/components/Page'
 import { ListenerAction, debounceConfig } from './types'
+import { FlexSchema } from '@src/components/Flex'
 
 /**
  * 组件名字，这个名字可以用来定位，用于组件通信
@@ -165,7 +166,7 @@ export type SchemaDefaultData = {
  */
 export type SchemaTpl = string
 export type SchemaApi = string | SchemaApiObject
-export type SchemaObject = PageSchema
+export type SchemaObject = PageSchema | FlexSchema
 export type SchemaCollection =
   | SchemaObject
   | SchemaTpl
@@ -196,7 +197,7 @@ export type SchemaMessage = {
    */
   saveSuccess?: string
 }
-export type SchemaType = 'page'
+export type SchemaType = 'page' | 'flex' | 'flex-item'
 
 export interface BaseSchema extends BaseSchemaWithoutType {
   type: SchemaType

@@ -76,14 +76,14 @@ function CustomForm(props: FormProps, ref: any) {
     form.submit()
   }
   const actionsRender = useMemo(() => {
-    if (isModal) return null
-    if (!actions) {
-      return (
-        <FormItem {...(props.layout !== 'vertical' ? defaultTailLayout : empty)} {...actionsProps}>
-          <Button onClick={handleClick}>{searchText}</Button>
-        </FormItem>
-      )
-    }
+    if (isModal || !actions) return null
+    // if () {
+    // return (
+    //   <FormItem {...(props.layout !== 'vertical' ? defaultTailLayout : empty)} {...actionsProps}>
+    //     <Button onClick={handleClick}>{searchText}</Button>
+    //   </FormItem>
+    // )
+    // }
 
     return (
       <FormItem {...(props.layout !== 'vertical' ? defaultTailLayout : empty)} {...actionsProps}>

@@ -9,9 +9,6 @@
         {
           "type": "card",
           "title": "常规模式-横向",
-          "style": {
-            "height": "100%"
-          },
           "body": {
             "type": "form",
             "api": "/api/mock2/form/saveForm?waitSeconds=2",
@@ -31,7 +28,7 @@
                 "type": "input",
                 "name": "email",
                 "level": "email",
-                "itemProps": {
+                "item": {
                   "tooltip": "This is a required field",
                   "required": true
                 },
@@ -43,7 +40,7 @@
                 "name": "password",
                 "level": "password",
                 "label": "密码",
-                "itemProps": {
+                "item": {
                   "required": true
                 },
                 "placeholder": "请输入密码"
@@ -73,7 +70,7 @@
                 "type": "input",
                 "name": "email",
                 "level": "email",
-                "itemProps": {
+                "item": {
                   "tooltip": "This is a required field",
                   "required": true
                 },
@@ -85,7 +82,7 @@
                 "level": "password",
                 "name": "password",
                 "label": "密码",
-                "itemProps": {
+                "item": {
                   "required": true
                 },
                 "placeholder": "请输入密码"
@@ -128,11 +125,11 @@
                 "type": "input",
                 "name": "email",
                 "level": "email",
-                "itemProps": {
+                "item": {
                   "tooltip": "This is a required field",
                   "required": true
                 },
-                "colProps": { "span": 12 },
+                "col": { "span": 12 },
                 "placeholder": "请输入邮箱",
                 "label": "邮箱"
               },
@@ -141,8 +138,8 @@
                 "name": "password",
                 "level": "password",
                 "label": "密码",
-                "colProps": { "span": 12 },
-                "itemProps": {
+                "col": { "span": 12 },
+                "item": {
                   "required": true
                 },
                 "placeholder": "请输入密码"
@@ -162,7 +159,7 @@
               "level": "submit",
               "body": "登录"
             },
-            "colProps": {
+            "col": {
               "span": 12
             },
             "mode": "grid",
@@ -171,7 +168,7 @@
                 "type": "input",
                 "name": "email",
                 "level": "email",
-                "itemProps": {
+                "item": {
                   "tooltip": "This is a required field",
                   "required": true
                 },
@@ -183,7 +180,7 @@
                 "level": "password",
                 "name": "password",
                 "label": "密码",
-                "itemProps": {
+                "item": {
                   "required": true
                 },
                 "placeholder": "请输入密码"
@@ -192,6 +189,84 @@
           }
         }
       ]
+    },
+    {
+      "type": "grid",
+      "columns": [
+        {
+          "type": "card",
+          "title": "grid + flex 左右布局",
+          "body": {
+            "type": "form",
+            "api": "/api/mock2/form/saveForm?waitSeconds=2",
+            "mode": "grid",
+            "col": { "span": 5 },
+            "body": [
+              {
+                "type": "input",
+                "name": "email",
+                "item": {
+                  "tooltip": "This is a required field",
+                  "required": true
+                },
+                "placeholder": "请输入邮箱",
+                "label": "用户名"
+              },
+              {
+                "type": "input",
+                "name": "password",
+                "level": "password",
+                "label": "密码",
+                "item": {
+                  "required": true
+                }
+              },
+              {
+                "type": "input",
+                "name": "password",
+                "level": "password",
+                "label": "请确认密码",
+                "item": {
+                  "required": true
+                }
+              },
+              {
+                "type": "flex",
+                "col": null,
+                "item": {
+                  "style": {
+                    "flex": 1
+                  },
+                  "labelCol": { "span": 0 },
+                  "wrapperCol": { "span": 24 }
+                },
+                "justify": "flex-end",
+                "body": [
+                  {
+                    "type": "button",
+                    "body": "重置"
+                  },
+                  {
+                    "type": "button",
+                    "body": "确认",
+                    "level": "primary",
+                    "style": {
+                      "margin": "0 10px"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "body": "取消"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "todo": "步骤表单"
     }
   ]
 }

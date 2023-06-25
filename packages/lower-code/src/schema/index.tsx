@@ -34,7 +34,7 @@ function extendField(props: RendererProps) {
   }
 }
 function render(props: RendererProps): any {
-  const { type, $path = '', ignorePath = false, level, ...rest } = props
+  const { type, $path = '', ignorePath = false, level, body: _, ...rest } = props
   let children
   const body = extendField(props)
   const path = getPath($path, type, ignorePath)

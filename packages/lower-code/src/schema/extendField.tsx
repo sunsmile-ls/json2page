@@ -2,27 +2,27 @@ import { RendererProps } from '@src/types/schema'
 import { isSchema } from '.'
 
 export function dealFormProps(props: RendererProps) {
-  const { itemProps: prop, body } = props
+  const { item: prop, body } = props
   if (Array.isArray(body)) {
-    return body.map((item) => {
-      const { itemProps, label, name, colProps, ...rest } = item
+    return body.map((ele) => {
+      const { item, label, name, col, ...rest } = ele
       return {
         type: 'formItem',
         ...prop,
-        ...itemProps,
-        colProps,
+        ...item,
+        col,
         label,
         name,
         body: rest,
       }
     })
   } else if (isSchema(body)) {
-    const { itemProps, label, name, colProps, ...rest } = body
+    const { item, label, name, col, ...rest } = body
     return {
       type: 'formItem',
       ...prop,
-      ...itemProps,
-      colProps,
+      ...item,
+      col,
       label,
       name,
       body: rest,
@@ -32,36 +32,38 @@ export function dealFormProps(props: RendererProps) {
 }
 
 export function gridFormProps(props: RendererProps) {
-  const { body, mode, rowProps, colProps: col } = props
+  const { body, mode, row, col: colProps } = props
   switch (mode) {
     case 'grid':
       if (Array.isArray(body)) {
         return {
           type: 'row',
           gutter: [4, 4],
-          ...rowProps,
+          ...row,
           body: body.map((item) => {
-            const { colProps, ...rest } = item
+            const { col, ...rest } = item
+            if (col === null) return item
             return {
               type: 'col',
               span: 6,
-              ...col,
               ...colProps,
+              ...col,
               body: rest,
             }
           }),
         }
       } else if (isSchema(body)) {
-        const { colProps, ...rest } = body
+        const { col, ...rest } = body
+        if (col === null) return body
         return {
           type: 'row',
           gutter: [4, 4],
-          ...rowProps,
+          ...row,
           body: {
             type: 'col',
             span: 6,
-            ...col,
             ...colProps,
+            ...col,
             body: rest,
           },
         }
